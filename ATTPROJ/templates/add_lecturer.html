@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add_Course</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--插件  -->
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+
+    <!--插件——动画  -->
+    <link rel="stylesheet" href="../static/css/animate.css">
+
+    <!--插件——字体库  -->
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+
+    <!--插件——加载进度条  -->
+    <link rel="stylesheet" href="../static/css/plugins/nprogress/nprogress.css">
+
+    <!--插件——侧边栏导航  -->
+    <link rel="stylesheet" href="../static/css/plugins/metisMenu/metisMenu.css">
+
+    <!--自定义  -->
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div style="text-align: center">
+                    <h1>Add_Lecturer</h1>
+                    <br>
+                    <br>
+                </div>
+                <form class="form-horizontal m-t" id="add_lecturer_Form" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">staff id:</label>
+                        <div class="col-sm-4">
+                            <input name="staff_id" class="form-control" type="text" placeholder="staff id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">DOB:</label>
+                        <div class="col-sm-4">
+                            <input name="DOB" class="form-control" type="date" aria-required="true" aria-invalid="false" placeholder="DOB">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="col-sm-4 control-label">username:</label>
+                        <div class="col-sm-4">
+                            <input name="username" class="form-control" type="text" aria-required="true" aria-invalid="false" placeholder="username">
+                        </div>
+                    </div>
+                        <div class="col-sm-6 col-sm-offset-8">
+                            <button class="btn btn-primary" type="submit">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+ <!--插件-->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.form.js"></script>
+    <!--插件——侧边栏导航  -->
+    <script src="../static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!--插件——加载进度条  -->
+    <script src="../static/js/plugins/nprogress/nprogress.js"></script>
+    <script src="../static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--自定义JS  -->
+    <script src="../static/js/tab.js"></script>
+    <script>
+        $(function () {
+            $('#add_lecturer_Form').ajaxForm(
+                function (data) {
+                    if (data === 'ok') {
+                        alert("Successfully!")
+                    } else {
+                        alert(data)
+                    }
+                }
+                );
+
+        });
+
+    </script>
+</body>
+
+</html>

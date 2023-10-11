@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ceshi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--插件  -->
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+
+    <!--插件——动画  -->
+    <link rel="stylesheet" href="../static/css/animate.css">
+
+    <!--插件——字体库  -->
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+
+    <!--插件——加载进度条  -->
+    <link rel="stylesheet" href="../static/css/plugins/nprogress/nprogress.css">
+
+    <!--插件——侧边栏导航  -->
+    <link rel="stylesheet" href="../static/css/plugins/metisMenu/metisMenu.css">
+
+    <!--自定义  -->
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body class="">
+    <ol class="breadcrumb">
+        <li>表格控件</li>
+        <li class="active">基本表格</li>
+    </ol>
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="name1" class="control-label">名称：</label>
+                        <input type="text" class="form-control" id="name1">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">时间选择：</label>
+                        <div class="input-daterange input-group" id="datepicker">
+                            <input type="text" class="input-sm form-control" name="start" value="2017-07-11" />
+                            <span class="input-group-addon">到</span>
+                            <input type="text" class="input-sm form-control" name="end" value="2017-07-31" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="time" class="control-label">价格：</label>
+                        <select class="form-control">
+                            <option>美元——$1</option>
+                            <option>美元——$2</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-info">查询</button>
+                </form>
+                <div class=" hidden-xs" id="exampleTableEventsToolbar" role="group">
+                    <button id="newForm" data-toggle="modal" type="button" class="btn btn-info">
+                                        <i class="fa fa-plus-square" aria-hidden="true"></i>新增
+                                    </button>
+                    <button id="delete" type="button" class="btn btn-danger">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>删除
+                                    </button>
+                </div>
+                <table id="table" class="animated fadeInRight" data-row-style="rowStyle" data-mobile-responsive="true">
+                                    <thead style="text-align: center" >
+                                    <tr>
+                                        <th style="margin-right: 10px">course code</th>
+                                        <th>course name</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for c in mycourse %}
+                                    <tr>
+
+                                        <td>{{ c.code }}</td>
+                                        <td>{{ c.name }}</td>
+                                        <td><button class="btn btn-info" onclick="window.location.href='{% url 'change_course' %}?id={{ c.id }}'">Change_Course</button></td>
+                                        <td><button class="btn btn-danger" onclick="deleteCourse({{ c.id }})">Delete_Course</button></td>
+
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                </table>
+                <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">新增</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="name" class="control-label">名称:</label>
+                                        <input type="text" class="form-control" id="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price" class="control-label">价格:</label>
+                                        <textarea class="form-control" id="price"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button id="ok" type="button" class="btn btn-primary">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!--插件-->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+
+    <!--插件——侧边栏导航  -->
+    <script src="../static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!--插件——加载进度条  -->
+    <script src="../static/js/plugins/nprogress/nprogress.js"></script>
+    <script src="../static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--自定义JS  -->
+    <script src="../static/js/tab.js"></script>
+<script>
+
+    function deleteCourse(id) {
+        if (confirm("delete?")){
+            window.location.href='{% url 'delete_course' %}?id='+id;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+</body>
+
+</html>
